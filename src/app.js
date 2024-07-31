@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const userRouter = require("./routes/users");
+const bookRouter = require("./routes/books");
 const mongoose = require("mongoose");
 
 // Вызываем функцию конфигурации
@@ -31,10 +32,18 @@ const helloWorld = (request, response) => {
   response.send("Hello, World");
 };
 
+// Опции для настройки CORS
+const corsOptions = {
+  origin: "http://127.0.0.1", // Разрешить доступ только с этого домена
+  methods: "GET,PUT,POST,DELETE", // Разрешенные HTTP-методы
+  allowedHeaders: ["Content-Type", "Authorization"], // Разрешенные заголовки
+};
+
 // с помощью app.use используем роутер и body-parser (помогает обрабатывать данные, которые приходят в теле сообщения)
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(userRouter);
+app.use(bookRouter);
 
 // Обработка get-запроса
 app.get("/", helloWorld);
