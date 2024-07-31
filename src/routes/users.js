@@ -12,9 +12,9 @@ const {
 router.use(logOriginUrl);
 
 router.get("/users", getUsers);
-router.get("/users/:user_id", getUser);
+router.get("/users/:userid", getUser);
 router.post("/users", createUser);
-router.patch("/users/:user_id", updateUser);
-router.delete("/users/:user_id", deleteUser);
+router.patch("/users/:userid", updateUser);
+router.delete("/users/:userid", deleteUser);
 
 module.exports = router;
